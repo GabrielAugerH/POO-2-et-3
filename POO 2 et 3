@@ -1,0 +1,103 @@
+#Fait par Gabriel Auger-Herrera (407)
+#Fait le 22 decembre 2023
+# POO 2 et 3
+import random
+
+
+class NPC:
+    def __init__(self):
+        # Identifier les stats
+        self.force = rouler_des()
+        self.agilite = rouler_des()
+        self.constition = rouler_des()
+        self.intelligence = rouler_des()
+        self.sagesse = rouler_des()
+        self.charisme = rouler_des()
+        self.class_armure = random.randint(1, 12)
+        self.nom = 'Bob'
+        self.race = 'Robot'
+        self.espece = 'AI'
+        self.nb_de_vie = random.randint(1, 20)
+        self.profession = 'x'
+
+    def print_caracteristiques(self):
+        print('Votre force est de' + str(self.force))
+        print('Votre agilité est de' + str(self.agilite))
+        print('Votre constition est de' + str(self.constition))
+        print('Votre intelligence est de' + str(self.intelligence))
+        print('Votre sagesse est de' + str(self.sagesse))
+        print('Votre charisme est de' + str(self.charisme))
+        print('Votre classe armure est' + str(self.class_armure))
+        print('Votre nom est' + str(self.nom))
+        print('votre nom est' + str(self.race))
+        print('Votre espèce est' + str(self.espece))
+        print('Votre nombre de vie est' + str(self.nb_de_vie))
+        print('votre profession est' + str(self.profession))
+
+
+class Hero(NPC):
+    def dommages(self, nb_dommages):
+        pass
+
+    def attaque(self, cible):
+        attaque = random.randint(1, 20)
+        if attaque == 20:
+            degats1 = random.randint(1, 8)
+            cible.dommages(degats1)
+
+        elif attaque == 1:
+            print('Votre attaque est ratée')
+        else:
+
+            if attaque >= cible.class_armure:
+                degats = random.randint(1, 6)
+                cible.dommages(degats)
+                print('Vous effectuez' + str(degats))
+
+            else:
+                print('Votre coup ne fonctionne pas ')
+
+class kobold(NPC):
+   def __init__(self):
+       super().__init__()
+
+   def dommages(self, nb_dommages):
+       self.nb_de_vie -= (nb_dommages - self.class_armure)
+
+   def attaque(self, cible):
+
+       attaque = random.randint(1, 20)
+       if attaque == 20:
+           degats1 = random.randint(1, 8)
+           cible.dommages(degats1)
+
+       elif attaque == 1:
+           print('Votre attaque est ratée')
+       else:
+
+           if attaque >= cible.class_armure:
+               degats = random.randint(1, 6)
+               cible.dommages(degats)
+               print('Vous effectuez' + str(degats))
+
+           else:
+               print('Votre coup ne fonctionne pas ')
+
+
+def est_vivant(self):
+       #  if self.nb_de_vie > 0:
+       #      return True
+       #  else:
+       #      False
+       return self.nb_de_vie > 0
+
+def rouler_des():
+    de1 = random.randint(1,6)
+    de2 = random.randint(1.6)
+    de3 = random.randint(1,6)
+    de4 = random.randint(1.6)
+
+    list = [de1,de2,de3,de4] #Les mettre ensemble
+    list.sort() #Classer en ordre
+    list.pop(0) #Enlever la valeur la plus petite
+    return list[0] + list[1] + list[2] #Addition des 3 valeurs les plus grandes
